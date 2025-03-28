@@ -5,6 +5,17 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  images: {
+  remotePatterns: [
+    {
+      protocol: 'https',
+      hostname: 'szttkfxiabqoxvrmrbxp.supabase.co',
+      port: '',
+      pathname: '/storage/v1/object/public/ia_bucket/**/**',
+      search: '',
+    },
+  ],
+}
 };
 
 export default nextConfig;
