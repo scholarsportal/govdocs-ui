@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
-import Link from 'next/link';
 import { createClient } from "@/utils/supabase/server";
-import { IconLoader2, IconExternalLink, IconFileText, IconSearch, IconEye } from "@tabler/icons-react";
+import { IconLoader2, } from "@tabler/icons-react";
 
 import { DataTable } from "@/components/documents/data-table";
 import { DocumentsHeader } from '@/components/documents/document-header';

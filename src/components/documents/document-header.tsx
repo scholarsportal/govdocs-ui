@@ -12,7 +12,6 @@ import {
   DialogTrigger 
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { IconPlus, IconLoader2 } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { z } from "zod"
@@ -67,7 +66,7 @@ export function DocumentsHeader() {
         throw new Error(errorData.detail?.[0]?.msg || 'Failed to process document')
       }
       
-      const result = await response.json()
+      // const result = await response.json()
       
       toast("Document processing initiated", {
         description: `Document "${data.title}" is now being processed.`,

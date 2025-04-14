@@ -1,6 +1,7 @@
 import { IconFileOff } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function DocumentsEmptyState({ error }: { error?: any }) {
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4">

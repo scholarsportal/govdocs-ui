@@ -3,7 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { format } from "date-fns"
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { IconEye, IconExternalLink } from "@tabler/icons-react"
 
