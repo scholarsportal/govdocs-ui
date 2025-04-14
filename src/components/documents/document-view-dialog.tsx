@@ -121,7 +121,7 @@ export function DocumentViewDialog({ document }: { document: Document }) {
        
 
         <DialogFooter className="mt-6">
-          <Link href={`/ocr-evaluation/${document.barcode}`} passHref>
+          <Link href={`/new_ocr_job/${document.id}`} passHref>
             <Button>Evaluate OCR Models</Button>
           </Link>
           <Button variant="outline" onClick={() => setIsOpen(false)}>
