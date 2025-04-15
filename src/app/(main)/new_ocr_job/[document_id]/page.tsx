@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useGetDocumentByIdQuery, useGetDocumentImageUrlQuery } from "@/state-management/documents/api";
 import { Button } from "@/components/ui/button";
@@ -86,8 +86,8 @@ export default function NewOcrJobPage() {
       return;
     }
 
-    const requests = [];
-    const requestIds = [];
+    // const requests = [];
+    // const requestIds = [];
     
     try {
       // Submit all OCR requests in parallel

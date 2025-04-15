@@ -15,6 +15,7 @@ export interface OcrJobBase {
   page_number: number;
   ocr_output: string;
   ocr_model: OcrModel;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ocr_config: any;
   status: 'pending' | 'processing' | 'completed' | 'error';
   created_at: string;

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { 
   useGetTesseractStatusQuery,
@@ -43,7 +42,7 @@ import {
   RadioGroup, 
   RadioGroupItem 
 } from "@/components/ui/radio-group";
-import { OcrJobBase, OcrModel, OcrEvaluationSubmission } from "@/types/ocr.types";
+import { OcrModel, OcrEvaluationSubmission } from "@/types/ocr.types";
 
 // Initialize Supabase client for realtime subscriptions
 const supabase = createClient();
@@ -56,8 +55,6 @@ export default function OcrEvalPage({
   const documentId = params.document_id;
   const requestIdsString = params.request_ids;
   const requestIds = requestIdsString.split(',').map(id => parseInt(id, 10));
-  
-  const router = useRouter();
   
   // Document data
   const { data: document, isLoading: isLoadingDocument } = useGetDocumentByIdQuery(documentId);
@@ -75,13 +72,13 @@ export default function OcrEvalPage({
   });
   
   // RTK Query for OCR statuses
-  const { data: tesseractStatus, isLoading: isLoadingTesseractStatus } = 
+  const { data: tesseractStatus } = 
     useGetTesseractStatusQuery(requestIds[0], { pollingInterval: 3000 });
-  const { data: markerStatus, isLoading: isLoadingMarkerStatus } = 
+  const { data: markerStatus } = 
     useGetMarkerStatusQuery(requestIds[1], { pollingInterval: 3000 });
-  const { data: olmStatus, isLoading: isLoadingOlmStatus } = 
+  const { data: olmStatus } = 
     useGetOlmStatusQuery(requestIds[2], { pollingInterval: 3000 });
-  const { data: smolDoclingStatus, isLoading: isLoadingSmolDoclingStatus } = 
+  const { data: smolDoclingStatus } = 
     useGetSmolDoclingStatusQuery(requestIds[3], { pollingInterval: 3000 });
   
   // RTK Query for OCR results
@@ -168,6 +165,7 @@ export default function OcrEvalPage({
     model: OcrModel, 
     jobId: number | undefined, 
     field: keyof OcrEvaluationSubmission, 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value: any
   ) => {
     if (!jobId) return;
@@ -251,12 +249,12 @@ export default function OcrEvalPage({
   };
 
   // Check if all OCR processes are complete
-  const isAllOcrCompleted = (
-    tesseractStatus?.status === 'completed' &&
-    markerStatus?.status === 'completed' &&
-    olmStatus?.status === 'completed' &&
-    smolDoclingStatus?.status === 'completed'
-  );
+  // const isAllOcrCompleted = (
+  //   tesseractStatus?.status === 'completed' &&
+  //   markerStatus?.status === 'completed' &&
+  //   olmStatus?.status === 'completed' &&
+  //   smolDoclingStatus?.status === 'completed'
+  // );
 
   // Check if any OCR process is still running
   const isAnyOcrProcessing = (
@@ -267,16 +265,16 @@ export default function OcrEvalPage({
   );
 
   // Check if all evaluations for current page are submitted
-  const areAllEvaluationsSubmitted = () => {
-    const jobIds = getCurrentPageJobIds();
-    const submitted = getSubmittedEvaluations(jobIds);
-    return (
-      submitted.tesseract &&
-      submitted.marker &&
-      submitted.olmocr &&
-      submitted.smoldocling
-    );
-  };
+  // const areAllEvaluationsSubmitted = () => {
+  //   const jobIds = getCurrentPageJobIds();
+  //   const submitted = getSubmittedEvaluations(jobIds);
+  //   return (
+  //     submitted.tesseract &&
+  //     submitted.marker &&
+  //     submitted.olmocr &&
+  //     submitted.smoldocling
+  //   );
+  // };
 
   if (isLoadingDocument) {
     return (
@@ -589,6 +587,7 @@ interface OcrResultAndEvaluationFormProps {
   evaluation: Partial<OcrEvaluationSubmission>;
   isSubmitted: boolean;
   isOcrCompleted: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: (field: keyof OcrEvaluationSubmission, value: any) => void;
   onSubmit: () => void;
   isSubmitting: boolean;
@@ -635,7 +634,7 @@ function OcrResultAndEvaluationForm({
             <div className="space-y-2">
               <Label className="font-medium">Format Quality (1-5)</Label>
               <p className="text-sm text-gray-600 mb-2">
-                How well did the OCR model preserve the original document's formatting?
+                How well did the OCR model preserve the original document formatting?
               </p>
               <RadioGroup 
                 value={evaluation.format_quality?.toString()} 
@@ -713,7 +712,7 @@ function OcrResultAndEvaluationForm({
             <div className="space-y-2">
               <Label className="font-medium">Hallucination (1-5)</Label>
               <p className="text-sm text-gray-600 mb-2">
-                Did the model add content that wasn't in the original document?
+                Did the model add content that wasn&apos;t in the original document?
                 (1 = many hallucinations, 5 = no hallucinations)
               </p>
               <RadioGroup 

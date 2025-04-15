@@ -9,7 +9,7 @@ export const documentsApi = createApi({
     baseQuery: fakeBaseQuery(),
     tagTypes: ['documents'],
     endpoints: (builder) => ({
-        getAlldocuments: builder.query<Database['public']['Tables']['documents']['Row'][], void>({
+        getAllDocuments: builder.query<Database['public']['Tables']['documents']['Row'][], void>({
             queryFn: async () => {
                 const { data, error } = await supabase
                     .from('documents')
@@ -53,4 +53,4 @@ export const documentsApi = createApi({
 });
 
 
-export const { useGetAlldocumentsQuery, useGetDocumentByIdQuery, useGetDocumentImageUrlQuery} = documentsApi;
+export const { useGetAllDocumentsQuery, useGetDocumentByIdQuery, useGetDocumentImageUrlQuery} = documentsApi;

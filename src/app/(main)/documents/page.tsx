@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetAlldocumentsQuery } from "@/state-management/documents/api";
+import { useGetAllDocumentsQuery } from "@/state-management/documents/api";
 //import { Button } from "@/components/ui/button";
 // import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // import { DocumentType } from "@/types/ocr.types";
@@ -11,7 +11,7 @@ import { useGetAlldocumentsQuery } from "@/state-management/documents/api";
 // import Image from "next/image";
 
 // export default function DocumentsPage() {
-//   const { data: documents, isLoading, error } = useGetAlldocumentsQuery();
+//   const { data: documents, isLoading, error } = useGetAllDocumentsQuery();
 //   const [selectedDocument, setSelectedDocument] = useState<DocumentType | null>(null);
 
 //   if (isLoading) {
@@ -162,7 +162,7 @@ import { useGetAlldocumentsQuery } from "@/state-management/documents/api";
 // }
 
 import { Suspense } from 'react';
-import { createClient } from "@/utils/supabase/server";
+// import { createClient } from "@/utils/supabase/server";
 import { IconLoader2, } from "@tabler/icons-react";
 
 import { DataTable } from "@/components/documents/data-table";
@@ -171,7 +171,7 @@ import { DocumentsEmptyState } from '@/components/documents/document-empty-state
 import { columns } from "@/components/documents/columns";
 
 export default function DocumentsPage() {
-  const { data: documents, isLoading, error } = useGetAlldocumentsQuery();
+  const { data: documents, error } = useGetAllDocumentsQuery();
   if (error) {
     console.error("Error fetching documents:", error);
   }

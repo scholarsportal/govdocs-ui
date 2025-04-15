@@ -5,7 +5,7 @@ This page will display all the ocr requests submitted. Clicking on the ocr reque
 "use client";
 
 import { useState } from "react";
-import { useGetDocumentByIdQuery, useGetAlldocumentsQuery } from "@/state-management/documents/api";
+import { useGetAllDocumentsQuery } from "@/state-management/documents/api";
 import { Button } from "@/components/ui/button";
 import { 
   Card, 
@@ -28,7 +28,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 import { useGetAllOcrJobsQuery } from "@/state-management/ocr_jobs/ocr";
 import { format } from "date-fns";
-import { Search, Filter, Clock, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Search, Clock, CheckCircle2, AlertTriangle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { 
   Select, 
@@ -40,11 +40,11 @@ import {
 import { createClient } from "@/utils/supabase/client";
 
 // Initialize Supabase client for realtime subscriptions
-const supabase = createClient();
+createClient();
 
 export default function OcrJobsPage() {
   const { data: ocrJobs, isLoading, error } = useGetAllOcrJobsQuery();
-  const { data: documents } = useGetAlldocumentsQuery();
+  const { data: documents } = useGetAllDocumentsQuery();
   
   // State for filtering
   const [searchQuery, setSearchQuery] = useState("");
@@ -146,7 +146,8 @@ export default function OcrJobsPage() {
   const formatDate = (dateString: string) => {
     try {
       return format(new Date(dateString), 'MMM d, yyyy h:mm a');
-    } catch (e) {
+    } catch {
+      // to-do: errors should be logged at least
       return dateString;
     }
   };
