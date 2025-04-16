@@ -37,10 +37,7 @@ import {
   SelectTrigger, 
   SelectValue 
 } from "@/components/ui/select";
-import { createClient } from "@/utils/supabase/client";
 
-// Initialize Supabase client for realtime subscriptions
-createClient();
 
 export default function OcrJobsPage() {
   const { data: ocrJobs, isLoading, error } = useGetAllOcrJobsQuery();

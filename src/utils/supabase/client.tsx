@@ -1,7 +1,5 @@
 import { createBrowserClient } from '@supabase/ssr'
 
-export const dynamic = 'force-dynamic';
-
 export function createClient() {
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
