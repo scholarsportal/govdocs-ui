@@ -4,6 +4,10 @@ include:
 - template: Auto-DevOps.gitlab-ci.yml
 
 variables:
+  # application variables
+  K8S_SECRET_NEXT_PUBLIC_SUPABASE_URL: http://production-supabase-kong.supabase-production.svc.cluster.local:8000
+  K8S_SECRET_NEXT_PUBLIC_SUPABASE_ANON_KEY: $SUPABASE_ANON_KEY
+
   # disable auto devops tests
   BROWSER_PERFORMANCE_DISABLED: 1
   CODE_INTELLIGENCE_DISABLED: 1
@@ -20,12 +24,11 @@ variables:
 
   # configure auto devops components
   REVIEW_DISABLED: 1
+  AUTO_DEVOPS_BUILD_IMAGE_EXTRA_ARGS: >-
+    --build-arg NEXT_PUBLIC_SUPABASE_URL=$K8S_SECRET_NEXT_PUBLIC_SUPABASE_URL
+    --build-arg NEXT_PUBLIC_SUPABASE_ANON_KEY=$K8S_SECRET_NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   # Agent
   KUBE_INGRESS_BASE_DOMAIN: kubedev.scholarsportal.info
   KUBE_CONTEXT: ai-ml/gitlab-agent:kubedev
   KUBE_NAMESPACE: $CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG # or $CI_ENVIRONMENT_SLUG
-
-  # application variables
-  K8S_SECRET_NEXT_PUBLIC_SUPABASE_URL: http://production-supabase-kong.supabase-production.svc.cluster.local:8000
-  K8S_SECRET_NEXT_PUBLIC_SUPABASE_ANON_KEY: $SUPABASE_ANON_KEY
