@@ -161,7 +161,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <Link href="/">
                 {/* <IconInnerShadowTop className="!size-5" /> */}
-                <Image src="/sp-no-text.png" alt="Image" className="inset-0 w-7 h-7 dark:brightness-[0.2] dark:grayscale" />
+                <Image src="/sp-no-text.png" alt="Image" width={20} height={20} className="inset-0 w-7 h-7 dark:brightness-[0.2] dark:grayscale" />
                 <div className="flex flex-col ">
                   <span className="text-base font-semibold">GovDocs</span>
                   <p className="text-center text-xs">Scholars Portal Project</p>

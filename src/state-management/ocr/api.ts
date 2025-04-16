@@ -193,9 +193,9 @@ export const ocrApi = createApi({
 
 // Export hooks for usage in functional components
 export const {
-  // Document hooks
-  useGetDocumentsQuery,
-  useGetDocumentByIdQuery,
+  // // Document hooks
+  // useGetDocumentsQuery,
+  // useGetDocumentByIdQuery,
   
   // Tesseract hooks
   useStartTesseractOcrMutation,

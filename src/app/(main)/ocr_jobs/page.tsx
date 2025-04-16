@@ -201,12 +201,12 @@ export default function OcrJobsPage() {
               />
             </div>
             <div className="w-full md:w-48">
-              <Select value={statusFilter || ""} onValueChange={(value) => setStatusFilter(value || null)}>
+              <Select value={statusFilter!} onValueChange={(value) => setStatusFilter(value || null)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Statuses</SelectItem>
+                  <SelectItem value="All">All Statuses</SelectItem>
                   <SelectItem value="completed">Completed</SelectItem>
                   <SelectItem value="processing">Processing</SelectItem>
                   <SelectItem value="pending">Pending</SelectItem>
@@ -215,12 +215,12 @@ export default function OcrJobsPage() {
               </Select>
             </div>
             <div className="w-full md:w-48">
-              <Select value={modelFilter || ""} onValueChange={(value) => setModelFilter(value || null)}>
+              <Select value={modelFilter!} onValueChange={(value) => setModelFilter(value || null)}>
                 <SelectTrigger>
                   <SelectValue placeholder="OCR Model" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Models</SelectItem>
+                  <SelectItem value="All">All Models</SelectItem>
                   <SelectItem value="tesseract">Tesseract</SelectItem>
                   <SelectItem value="marker">Marker</SelectItem>
                   <SelectItem value="olmocr">OLM OCR</SelectItem>
