@@ -1,5 +1,5 @@
 'use client'
-import { DataTable, OCRJobsDataTable } from "@/components/data-table"
+import {OCRJobsDataTable } from "@/components/data-table"
 import { useGetAllOcrJobsQuery } from "@/state-management/ocr_jobs/ocr"
 
 export default function OCREvalPage() {
